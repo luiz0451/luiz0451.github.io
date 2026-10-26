@@ -1,9 +1,7 @@
 ---
-import Ascii from "ascii.rest/astro";
 import { getCollection } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
 import FrierenSpin from "@components/FrierenSpin.astro";
-
 const { frontmatter } = Astro.props;
 const { title, description } = frontmatter;
 
@@ -21,9 +19,9 @@ const projects = (await getCollection("projects")).sort((a, b) =>
             <ul class="mt-8 space-y-3" aria-label="Experiência">
                 {projects.map(({ data: project }) => (
                     <li class="flex items-center gap-2">
-                        <span class="flex h-5 w-5 flex-none items-center justify-center" aria-hidden="true">
+                        <span class="flex h-6 w-6 flex-none items-center justify-center" aria-hidden="true">
                             {project.logo && (
-                                <img src={project.logo} alt="" width="20" height="20" class="h-5 w-5 object-contain" />
+                                <img src={project.logo} alt="" width="20" height="20" class="experience-logo h-5 w-5 object-contain" />
                             )}
                         </span>
                         {project.url ? (
@@ -41,10 +39,4 @@ const projects = (await getCollection("projects")).sort((a, b) =>
         </div>
         <FrierenSpin />
     </section>
-
-    <Ascii
-        piece="sea-swell"
-        label="Animação em ASCII de um veleiro sobre ondas"
-        class="mt-8 flex justify-center [&_pre]:[font-family:var(--font-mono)] [&_pre]:text-[clamp(0.4rem,2vw,1rem)]"
-    />
 </BaseLayout>

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import PostList from "@components/PostList.astro";
 import { getCollection } from "astro:content";
-import { formatDate } from "../utils/format-date";
 
 const { frontmatter = {} } = Astro.props;
 
@@ -10,7 +10,6 @@ const posts = (await getCollection("posts", ({ data }) => {
 })).sort(
     (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
-const tagClass = (index: number) => `tag-link-${index % 6}`;
 const seoTitle = frontmatter.title ?? "blog";
 const seoDescription = frontmatter.description ?? "meu pedacinho de história na internet";
 ---
@@ -22,31 +21,7 @@ const seoDescription = frontmatter.description ?? "meu pedacinho de história na
                 nenhum post ainda.
             </div>
         ) : (
-            <ul class="space-y-5">
-                {posts.map((post) => (
-                    <li>
-                        <div>
-                            <div class="meta-line">
-                                <span>{formatDate(post.data.publishDate)}</span>
-                                {post.data.tags && post.data.tags.length > 0 ? (
-                                    <>
-                                        <span class="meta-separator">*</span>
-                                        <div class="flex flex-wrap gap-x-2">
-                                            {post.data.tags.map((tag, index) => (
-                                                <a href={`/tags/${tag}/`} class={tagClass(index)}>#{tag}</a>
-                                            ))}
-                                        </div>
-                                    </>
-                                ) : null}
-                            </div>
-                            <a href={`/${post.id}/`} class="post-title-link">
-                                {post.data.title}
-                                {post.data.draft && <span class="draft-note"> DRAFT</span>}
-                            </a>
-                        </div>
-                    </li>
-                ))}
-            </ul>
+            <PostList posts={posts} />
         )}
     </section>
 </BaseLayout>

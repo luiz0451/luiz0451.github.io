@@ -1,0 +1,23 @@
+---
+const pathname = Astro.url.pathname;
+const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
+const links = [
+    { href: "/", label: "talkinghead" },
+    { href: "/posts/", label: "posts" },
+    { href: "/updates/", label: "updates" },
+    { href: "/rss.xml", label: "rss", plain: true },
+];
+---
+
+<nav
+    class="flex flex-wrap items-center gap-x-4 gap-y-1 px-4 py-4 sm:px-6 md:sticky md:top-0 md:h-screen md:w-48 md:flex-none md:flex-col md:items-start md:gap-y-2 md:px-6 md:py-8"
+    aria-label="Principal"
+>
+    {links.map(({ href, label, plain }) => (
+        <a
+            href={href}
+            class:list={{ "nav-link--active": !plain && isActive(href) }}
+        >{label}</a>
+    ))}
+</nav>

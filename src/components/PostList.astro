@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { formatDate } from "../utils/format-date";
+
+interface Props {
+    posts: CollectionEntry<"posts">[];
+}
+
+const { posts } = Astro.props;
+const tagClass = (index: number) => `tag-link-${index % 6}`;
+---
+
+<ul class="space-y-5">
+    {posts.map((post) => (
+        <li>
+            <div class="meta-line">
+                <span>{formatDate(post.data.publishDate)}</span>
+                {post.data.tags && post.data.tags.length > 0 ? (
+                    <>
+                        <span class="meta-separator">*</span>
+                        <div class="flex flex-wrap gap-x-2">
+                            {post.data.tags.map((tag, index) => (
+                                <a href={`/tags/${tag}/`} class={tagClass(index)}>#{tag}</a>
+                            ))}
+                        </div>
+                    </>
+                ) : null}
+            </div>
+            <a href={`/${post.id}/`} class="post-title-link">
+                {post.data.title}
+                {post.data.draft && <span class="draft-note"> DRAFT</span>}
+            </a>
+        </li>
+    ))}
+</ul>

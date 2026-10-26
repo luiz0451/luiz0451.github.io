@@ -9,7 +9,6 @@
         "@astrojs/ts-plugin": "^1.10.7",
         "@lucide/astro": "^0.563.0",
         "@tailwindcss/vite": "^4.1.18",
-        "ascii.rest": "0.2.1",
         "astro": "^6.2.2",
         "astro-expressive-code": "^0.41.6",
         "class-variance-authority": "^0.7.1",
@@ -599,8 +598,6 @@
     "aria-query": ["aria-query@5.3.2", "", {}, "sha512-COROpnaoap1E2F000S62r6A60uHZnmlvomhfyT2DlTcrY1OrBKn2UhH7qn5wTC9zMvD0AY7csdPSNwKP+7WiQw=="],
 
     "array-iterate": ["array-iterate@2.0.1", "", {}, "sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg=="],
-
-    "ascii.rest": ["ascii.rest@0.2.1", "", { "peerDependencies": { "react": ">=18" }, "optionalPeers": ["react"], "bin": { "ascii.rest": "dist/cli.js" } }, "sha512-9PY859MpGBo2SQtXO+YTQ9/tuAMG2QUcptXC3PZx5/q8Pk7GFjQPGgOC+AF1+QFQGprVqZBDRPX6k/5TB7MIVw=="],
 
     "ast-types": ["ast-types@0.16.1", "", { "dependencies": { "tslib": "^2.0.1" } }, "sha512-6t10qk83GOG8p0vKmaCr8eiilZwO171AvbROMtvvNiwrTly62t+7XkA8RdIIVbpMhCASAsxgAzdRSwh6nw/5Dg=="],
 

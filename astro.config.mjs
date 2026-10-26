@@ -16,7 +16,7 @@ import { glossarySchema } from "./src/schemas/glossary.ts";
  * @typedef {import("hast").Root} HastRoot
  */
 
-const codeFontStack = '"Paper Mono", monospace';
+const codeFontStack = '"Iosevka Term Slab", monospace';
 const site = "https://talkinghead.blog.br";
 
 /**
@@ -257,6 +257,7 @@ export default defineConfig({
     styleOverrides: {
       borderRadius: "0",
       codeFontFamily: codeFontStack,
+      codeBackground: "var(--theme-bg-muted)",
       codeFontSize: "0.9rem",
     },
   })],
