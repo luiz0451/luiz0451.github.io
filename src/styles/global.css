@@ -355,10 +355,15 @@
         @apply leading-7;
     }
 
-    .post-content {
+    .justified {
+        hyphenate-limit-chars: 7 3 3;
         hyphens: auto;
-        overflow-wrap: anywhere;
         text-align: justify;
+        text-wrap: pretty;
+    }
+
+    .post-content {
+        overflow-wrap: anywhere;
     }
 
     .post-content :is(h2, h3) {

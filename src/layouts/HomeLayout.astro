@@ -11,16 +11,16 @@ const links = [
 ---
 
 <BaseLayout title={title} description={description} bodyClass="bg-photo" showHeader={false}>
-    <section class="grid flex-1 content-center justify-center gap-x-16 gap-y-4 pt-4 grid-cols-[minmax(0,28rem)]">
+    <section class="grid flex-1 content-center justify-center gap-x-16 gap-y-4 pt-4 grid-cols-[minmax(0,36rem)]">
         <div class="lg:relative">
-            <div class="lg:absolute lg:top-0 lg:right-full lg:mr-16">
+            <div class="lg:absolute lg:top-0 lg:right-full lg:mr-20">
                 <nav class="flex flex-row flex-wrap gap-x-4 gap-y-1 lg:flex-col lg:gap-y-2" aria-label="Principal">
                     {links.map(({ href, label }) => (
                         <a href={href} class="text-(--theme-text) underline underline-offset-4 visited:text-(--theme-text) hover:text-(--theme-link)">{label}</a>
                     ))}
                 </nav>
             </div>
-            <div class="text-justify hyphens-auto [&>p+p]:mt-4">
+            <div class="justified [&>p+p]:mt-4">
                 <slot />
             </div>
             <p class="post-signoff mt-6 text-left italic">YOU'RE GONNA CARRY THAT WEIGHT.</p>
