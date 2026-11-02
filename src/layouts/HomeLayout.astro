@@ -13,7 +13,7 @@ const links = [
 <BaseLayout title={title} description={description} bodyClass="bg-photo" showHeader={false}>
     <section class="grid flex-1 content-center justify-center gap-x-16 gap-y-4 pt-4 grid-cols-[minmax(0,36rem)]">
         <div class="lg:relative">
-            <div class="lg:absolute lg:top-0 lg:right-full lg:mr-20">
+            <div class="mb-4 lg:absolute lg:top-0 lg:right-full lg:mb-0 lg:mr-16">
                 <nav class="flex flex-row flex-wrap gap-x-4 gap-y-1 lg:flex-col lg:gap-y-2" aria-label="Principal">
                     {links.map(({ href, label }) => (
                         <a href={href} class="text-(--theme-text) underline underline-offset-4 visited:text-(--theme-text) hover:text-(--theme-link)">{label}</a>
