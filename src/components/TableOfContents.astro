@@ -11,7 +11,7 @@ const items = headings;
 
 {items.length > 0 && (
     <nav class="post-toc" aria-label="índice do post">
-        <p>tópicos:</p>
+        <p>Índice</p>
 
         <ul class="list-asterisk">
             {items.map(({ depth, slug, text }) => (
@@ -25,7 +25,6 @@ const items = headings;
 
 <style>
     .post-toc {
-        font-size: 0.875rem;
         margin-block-end: 2rem;
     }
 

@@ -1,42 +1,31 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
-import FrierenSpin from "@components/FrierenSpin.astro";
+import Footer from "@components/Footer.astro";
 const { frontmatter } = Astro.props;
 const { title, description } = frontmatter;
-
-const projects = (await getCollection("projects")).sort((a, b) =>
-    a.id.localeCompare(b.id),
-);
+const links = [
+    { href: "/", label: "talkinghead" },
+    { href: "/posts/", label: "posts" },
+    { href: "/updates/", label: "updates" },
+];
 ---
 
-<BaseLayout title={title} description={description} ogImage="/og-mandelbrot.png">
-    <section class="flex flex-col-reverse items-center gap-6 py-4 sm:flex-row sm:gap-10">
-        <div class="w-full min-w-0">
-            <div class="post-content text-lg">
+<BaseLayout title={title} description={description} bodyClass="bg-photo" showHeader={false}>
+    <section class="grid flex-1 content-center justify-center gap-x-16 gap-y-4 pt-4 grid-cols-[minmax(0,28rem)]">
+        <div class="lg:relative">
+            <div class="lg:absolute lg:top-0 lg:right-full lg:mr-16">
+                <nav class="flex flex-row flex-wrap gap-x-4 gap-y-1 lg:flex-col lg:gap-y-2" aria-label="Principal">
+                    {links.map(({ href, label }) => (
+                        <a href={href} class="text-(--theme-text) underline underline-offset-4 visited:text-(--theme-text) hover:text-(--theme-link)">{label}</a>
+                    ))}
+                </nav>
+            </div>
+            <div class="text-justify hyphens-auto [&>p+p]:mt-4">
                 <slot />
             </div>
-            <ul class="mt-8 space-y-3" aria-label="Experiência">
-                {projects.map(({ data: project }) => (
-                    <li class="flex items-center gap-2">
-                        <span class="flex h-6 w-6 flex-none items-center justify-center" aria-hidden="true">
-                            {project.logo && (
-                                <img src={project.logo} alt="" width="20" height="20" class="experience-logo h-5 w-5 object-contain" />
-                            )}
-                        </span>
-                        {project.url ? (
-                            <a href={project.url} target="_blank" rel="noopener noreferrer" class="font-semibold">
-                                {project.name}
-                            </a>
-                        ) : (
-                            <span class="font-semibold">{project.name}</span>
-                        )}
-                        <span class="meta-separator" aria-hidden="true">.</span>
-                        <span class="muted">{project.role}</span>
-                    </li>
-                ))}
-            </ul>
+            <p class="post-signoff mt-6 text-left italic">YOU'RE GONNA CARRY THAT WEIGHT.</p>
+            <Footer class="mt-4 text-left text-sm" />
         </div>
-        <FrierenSpin />
     </section>
+    <Fragment slot="footer" />
 </BaseLayout>

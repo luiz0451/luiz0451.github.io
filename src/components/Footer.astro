@@ -1,3 +1,14 @@
-<footer class="mx-auto mt-12 w-full max-w-3xl px-4 py-6 text-center text-sm sm:px-6">
-    <p class="post-signoff muted text-base italic">YOU'RE GONNA CARRY THAT WEIGHT.</p>
+---
+import { CreativeCommons, Rss } from "@lucide/astro";
+const { class: className = "mx-auto flex w-full max-w-2xl px-6 py-6 text-left text-sm sm:px-16" } = Astro.props;
+---
+
+<footer class={className}>
+    <div class="flex flex-col items-start gap-1">
+        <div class="flex flex-row flex-wrap items-center gap-x-2">
+            <a class="muted inline-flex items-center gap-1" rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><CreativeCommons aria-hidden="true" class="size-4" />CC BY-SA 4.0</a>
+            <span class="muted" aria-hidden="true">·</span>
+            <a class="muted inline-flex items-center gap-1" href="/rss.xml"><Rss aria-hidden="true" class="size-4" />RSS</a>
+        </div>
+    </div>
 </footer>

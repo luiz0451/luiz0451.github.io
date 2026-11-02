@@ -18,14 +18,14 @@ const updates = await Promise.all(entries.map(async (update) => ({
     {updates.length === 0 ? (
         <p class="muted">nenhuma atualização ainda.</p>
     ) : (
-        <ul class="space-y-5 text-justify">
+        <ul class="space-y-5 text-justify hyphens-auto">
             {updates.map(({ update, Content }) => (
                 <li>
                     <time class="meta-line" datetime={update.data.date.toISOString()}>
                         {formatDate(update.data.date)}
                     </time>
                     <p class="update-title mt-1">{update.data.update}</p>
-                    <div class="muted mt-1 text-sm">
+                    <div class="muted mt-1">
                         <Content />
                     </div>
                 </li>

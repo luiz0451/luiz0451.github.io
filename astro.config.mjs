@@ -16,7 +16,7 @@ import { glossarySchema } from "./src/schemas/glossary.ts";
  * @typedef {import("hast").Root} HastRoot
  */
 
-const codeFontStack = '"Iosevka Term Slab", monospace';
+const codeFontStack = '"JetBrains Mono", monospace';
 const site = "https://talkinghead.blog.br";
 
 /**
@@ -248,17 +248,17 @@ function rehypeExternalLinks() {
 export default defineConfig({
   integrations: [expressiveCode({
     themes: [
-      ExpressiveCodeTheme.fromJSONString(readFileSync(new URL("./src/themes/seoul256-dark.json", import.meta.url), "utf8")),
-      ExpressiveCodeTheme.fromJSONString(readFileSync(new URL("./src/themes/seoul256-light.json", import.meta.url), "utf8")),
+      ExpressiveCodeTheme.fromJSONString(readFileSync(new URL("./src/themes/monochrome-dark.json", import.meta.url), "utf8")),
     ],
-    useDarkModeMediaQuery: true,
+    defaultProps: {
+      frame: "none",
+    },
     minSyntaxHighlightingColorContrast: 0,
     themeCssSelector: () => false,
     styleOverrides: {
       borderRadius: "0",
       codeFontFamily: codeFontStack,
-      codeBackground: "var(--theme-bg-muted)",
-      codeFontSize: "0.9rem",
+      codeFontSize: "0.8125rem",
     },
   })],
   vite: {

@@ -83,8 +83,7 @@ const articleSchema = {
 
                 {tags && tags.length > 0 && (
                     <>
-                        <span class="meta-separator">*</span>
-                        <div class="flex flex-wrap gap-2">
+                        <div class="flex w-full flex-wrap gap-2">
                             {tags.map((tag: string, index: number) => (
                                 <a href={`/tags/${tag}`} class={tagClass(index)}>#{tag}</a>
                             ))}
@@ -95,8 +94,8 @@ const articleSchema = {
         </header>
 
         {tldr && description && (
-            <section class="mb-8 text-justify">
-                <h2>tl;dr</h2>
+            <section class="tldr mb-8 text-justify hyphens-auto">
+                <p class="tldr-label">tl;dr</p>
                 <p class="mt-2">
                     {description}
                 </p>
