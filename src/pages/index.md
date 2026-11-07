@@ -6,7 +6,7 @@ description: talkinghead
 
 Olá! Seja bem-vindo(a).
 
-Atualmente faço estágio no <img src="/logos/banco-do-brasil.svg" alt="" class="experience-logo inline-logo">[Banco do Brasil](https://www.bb.com.br), como desenvolvedor full stack.
+Atualmente faço estágio no <img src="/logos/banco-do-brasil.svg" alt="" class="experience-logo inline-logo">[BB](https://www.bb.com.br), como desenvolvedor full stack.
 
 Já colaborei como pesquisador no <img src="/logos/ibict.png" alt="" class="experience-logo inline-logo">[IBICT](https://www.gov.br/ibict/pt-br), atualmente estou no <img src="/logos/elattes.svg" alt="" class="experience-logo inline-logo">eLattes, também como pesquisador.
 

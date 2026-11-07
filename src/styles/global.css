@@ -94,7 +94,7 @@
 
     body.bg-photo {
         background-image:
-            linear-gradient(rgb(0 0 0 / 0.75), rgb(0 0 0 / 0.75)),
+            linear-gradient(rgb(0 0 0 / 0.85), rgb(0 0 0 / 0.85)),
             url("/wallpaper-bridge.jpg");
         background-repeat: no-repeat;
         background-size: cover;
