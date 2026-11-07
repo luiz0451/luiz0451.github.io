@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import GalleryMedia from "@components/GalleryMedia.astro";
+import { formatDate } from "../../utils/format-date";
+import { parseVideoUrl } from "../../utils/video-embed";
+
+export async function getStaticPaths() {
+    const entries = await getCollection("gallery");
+    return entries.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const video = entry.data.type === "video" && entry.data.url ? parseVideoUrl(entry.data.url) : null;
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.title}>
+    <article class="gallery-page">
+        <a href="/gallery/" class="gallery-back">← gallery</a>
+        <GalleryMedia entry={entry} video={video} variant="page" />
+        <header class="gallery-page-caption">
+            <time class="meta-line text-sm" datetime={entry.data.date.toISOString()}>
+                {formatDate(entry.data.date)}
+            </time>
+            <h1 class="update-title">{entry.data.title}</h1>
+        </header>
+        <div class="muted">
+            <Content />
+        </div>
+    </article>
+</BaseLayout>

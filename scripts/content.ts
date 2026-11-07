@@ -1,6 +1,7 @@
 #!/usr/bin/env bun
-import { existsSync, readFileSync, readdirSync } from "node:fs";
-import { basename, dirname, join, resolve } from "node:path";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync } from "node:fs";
+import { basename, dirname, extname, join, resolve } from "node:path";
+import { parseVideoUrl } from "../src/utils/video-embed";
 import cac from "cac";
 import prompts, {
     type PromptAnswers,
@@ -10,7 +11,7 @@ import prompts, {
 } from "prompts";
 
 
-type ContentType = "post" | "update" | "experience";
+type ContentType = "post" | "update" | "experience" | "gallery";
 type Draft = {
     title?: string;
     description?: string;
@@ -62,6 +63,7 @@ const directories: Record<ContentType, string> = {
     post: "./src/content/posts",
     update: "./src/content/updates",
     experience: "./src/content/experiences",
+    gallery: "./src/content/gallery",
 };
 const aliases: Record<string, ContentType> = {
     post: "post",
@@ -70,13 +72,17 @@ const aliases: Record<string, ContentType> = {
     atualizacao: "update",
     experience: "experience",
     experiencia: "experience",
+    gallery: "gallery",
+    galeria: "gallery",
+    imagem: "gallery",
+    video: "gallery",
 };
 
 const cli = cac("content");
 cli.usage("new [tipo] | status | publish <post> | check");
 cli.option(
     "--type <type>",
-    "Tipo: post, update ou experience",
+    "Tipo: post, update, experience ou gallery",
 );
 cli.option("--title <title>", "Titulo inicial de um post");
 cli.option("--description <description>", "Descricao inicial de um post");
@@ -237,6 +243,28 @@ function previewUpdate(draft: Draft) {
         String(draft.description ?? ""),
     ];
 }
+function previewGallery(draft: Draft) {
+    return [
+        `title: ${asYaml(String(draft.title ?? ""))}`,
+        `date: ${today()}`,
+        `image: ${String(draft["source"] ?? "")}`,
+        `alt: ${asYaml(String(draft["alt"] ?? ""))}`,
+        "legenda:",
+        String(draft.description ?? ""),
+    ];
+}
+
+function previewGalleryVideo(draft: Draft) {
+    return [
+        "type: video",
+        `title: ${asYaml(String(draft.title ?? ""))}`,
+        `date: ${today()}`,
+        `url: ${String(draft["url"] ?? "")}`,
+        "legenda:",
+        String(draft.description ?? ""),
+    ];
+}
+
 
 
 
@@ -273,6 +301,7 @@ async function chooseType(requestedType?: string): Promise<ContentType | undefin
             { title: "Post", value: "post" },
             { title: "Atualizacao de vida", value: "update" },
             { title: "Experiencia profissional", value: "experience" },
+            { title: "Galeria (imagem ou video)", value: "gallery" },
         ],
     });
 
@@ -424,10 +453,100 @@ async function createExperience() {
     console.log(`Criado: ${filePath}`);
 }
 
+function expandPath(input: string) {
+    const unquoted = input.trim().replace(/^(['"])(.*)\1$/, "$2").replace(/\\(.)/g, "$1");
+    return unquoted.startsWith("~/")
+        ? join(process.env["HOME"] ?? "", unquoted.slice(2))
+        : resolve(unquoted);
+}
+
+async function createGallery() {
+    const kind = await prompts({
+        type: "select",
+        name: "kind",
+        message: "Tipo de midia",
+        choices: [
+            { title: "Imagem", value: "image" },
+            { title: "Video (YouTube, Vimeo ou arquivo)", value: "video" },
+        ],
+    });
+    if (kind["kind"] === "video") {
+        await createGalleryVideo();
+    } else if (kind["kind"] === "image") {
+        await createGalleryImage();
+    }
+}
+
+async function createGalleryVideo() {
+    const response = await askWithPreview([
+        { type: "text", name: "title", message: "Titulo" },
+        {
+            type: "text",
+            name: "url",
+            message: "URL do video",
+            validate: (value: string) =>
+                parseVideoUrl(value.trim()) ? true : "Use YouTube, Vimeo ou um link direto .mp4/.webm/.ogv/.mov",
+        },
+        { type: "text", name: "description", message: "Legenda (opcional)" },
+    ], previewGalleryVideo);
+
+    if (!response.title || !response["url"]) return;
+
+    const filePath = nextFilePath("gallery", String(response.title));
+    mkdirSync(directories.gallery, { recursive: true });
+    await Bun.write(filePath, [
+        "---",
+        "type: video",
+        `title: ${asYaml(String(response.title))}`,
+        `date: ${today()}`,
+        `url: ${asYaml(String(response["url"]).trim())}`,
+        "---",
+        "",
+        response.description ?? "",
+        "",
+    ].join("\n"));
+    console.log(`Criado: ${filePath}`);
+}
+
+async function createGalleryImage() {
+    const response = await askWithPreview([
+        { type: "text", name: "title", message: "Titulo" },
+        { type: "text", name: "source", message: "Caminho da imagem" },
+        { type: "text", name: "alt", message: "Texto alternativo" },
+        { type: "text", name: "description", message: "Legenda (opcional)" },
+    ], previewGallery);
+
+    if (!response.title || !response["source"] || !response["alt"]) return;
+
+    const source = expandPath(String(response["source"]));
+    if (!existsSync(source)) {
+        throw new Error(`Imagem nao encontrada: ${source}`);
+    }
+
+    const mdPath = nextFilePath("gallery", String(response.title));
+    const imagePath = mdPath.replace(/\.md$/, extname(source).toLowerCase());
+    mkdirSync(directories.gallery, { recursive: true });
+    copyFileSync(source, imagePath);
+    await Bun.write(mdPath, [
+        "---",
+        `title: ${asYaml(String(response.title))}`,
+        `date: ${today()}`,
+        `image: ./${basename(imagePath)}`,
+        `alt: ${asYaml(String(response["alt"]))}`,
+        "---",
+        "",
+        response.description ?? "",
+        "",
+    ].join("\n"));
+    console.log(`Criado: ${mdPath}`);
+    console.log(`Imagem: ${imagePath}`);
+}
+
 async function createContent(type: ContentType) {
     if (type === "post") await createPost();
     if (type === "update") await createUpdate();
     if (type === "experience") await createExperience();
+    if (type === "gallery") await createGallery();
 }
 
 function yamlScalar(value: string | undefined) {
@@ -700,7 +819,7 @@ async function main() {
     if (command === "new" || command === "create") {
         const type = await chooseType(args[1]);
         if (!type) {
-            throw new Error("Escolha um tipo: post, update ou experience.");
+            throw new Error("Escolha um tipo: post, update, experience ou gallery.");
         }
         await createContent(type);
         return;
@@ -713,7 +832,7 @@ async function main() {
 
     const type = await chooseType(directType);
     if (!type) {
-        throw new Error("Escolha um tipo: post, update ou experience.");
+        throw new Error("Escolha um tipo: post, update, experience ou gallery.");
     }
     await createContent(type);
 }

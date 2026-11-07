@@ -1,0 +1,42 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import GalleryMedia from "@components/GalleryMedia.astro";
+import { formatDate } from "../../utils/format-date";
+import { parseVideoUrl } from "../../utils/video-embed";
+
+const entries = (await getCollection("gallery")).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const items = await Promise.all(entries.map(async (entry) => ({
+    entry,
+    video: entry.data.type === "video" && entry.data.url ? parseVideoUrl(entry.data.url) : null,
+    Content: (await render(entry)).Content,
+})));
+---
+
+<BaseLayout title="gallery" description="Galeria de mídia.">
+    {items.length === 0 ? (
+        <p class="muted">nenhuma mídia ainda.</p>
+    ) : (
+        <ul class="gallery-grid">
+            {items.map(({ entry, video, Content }) => (
+                <li id={entry.id} class="gallery-card">
+                    <GalleryMedia entry={entry} video={video} variant="card" />
+                    <div class="gallery-caption">
+                        <div class="gallery-caption-header">
+                            <time class="meta-line text-sm" datetime={entry.data.date.toISOString()}>
+                                {formatDate(entry.data.date)}
+                            </time>
+                            <a href={`/gallery/${entry.id}/`} class="update-title">{entry.data.title}</a>
+                        </div>
+                        <div class="muted mt-1 text-sm">
+                            <Content />
+                        </div>
+                    </div>
+                </li>
+            ))}
+        </ul>
+    )}
+</BaseLayout>
