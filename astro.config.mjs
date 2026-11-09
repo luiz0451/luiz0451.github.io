@@ -247,9 +247,9 @@ function rehypeExternalLinks() {
 
 export default defineConfig({
   integrations: [expressiveCode({
-    themes: [
-      ExpressiveCodeTheme.fromJSONString(readFileSync(new URL("./src/themes/monochrome-dark.json", import.meta.url), "utf8")),
-    ],
+    themes: ["monochrome-dark", "monochrome-light"].map((name) =>
+      ExpressiveCodeTheme.fromJSONString(readFileSync(new URL(`./src/themes/${name}.json`, import.meta.url), "utf8")),
+    ),
     defaultProps: {
       frame: "none",
     },

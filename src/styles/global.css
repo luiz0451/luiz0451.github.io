@@ -60,28 +60,7 @@
 
 @layer base {
     :root {
-        /* seoul256 (junegunn/seoul256.vim), default iTerm2 RGB map. Dark style: fg 252. */
-        color-scheme: dark;
-        --theme-bg-subtle: #999872; /* LineNr fg 101 */
-        --theme-text: #d9d9d9; /* Normal fg */
-        --theme-text-subtle: #e9e9e9; /* Conceal fg 254 */
-        --theme-heading: #e0bebc; /* Title 181 */
-        --theme-accent: #e17899; /* Keyword 168 */
-        --theme-link: #e0bebc; /* Underlined 181 */
-        --theme-visited: #e19972; /* Include 173 */
-        --theme-active: #e12672; /* Exception 161 */
-        --theme-orange: #dfbc72; /* WarningMsg 179 */
-        --theme-selection-bg: #007173; /* Visual 23 */
-        --theme-selection-fg: var(--theme-text);
-        --theme-bg: #252525; /* 234 */
-        --theme-bg-muted: #333233; /* 235 */
-        --theme-border: #060606; /* 232 */
-        --font-mono: "Ioskeley Mono", monospace;
-        --font-sans: "Intern", sans-serif;
-        --nvim-divider-pattern: "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -";
-    }
-
-    body {
+        color-scheme: light dark;
         --theme-bg: #000000;
         --theme-bg-muted: #161616;
         --theme-bg-subtle: #6a6a6a;
@@ -94,7 +73,29 @@
         --theme-active: #ffffff;
         --theme-orange: #ffffff;
         --theme-selection-bg: #3a3a3a;
+        --theme-selection-fg: var(--theme-text);
         --theme-border: #2a2a2a;
+        --font-mono: "Ioskeley Mono", monospace;
+        --font-sans: "Intern", sans-serif;
+        --nvim-divider-pattern: "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -";
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --theme-bg: #ffffff;
+            --theme-bg-muted: #f0f0f0;
+            --theme-bg-subtle: #999999;
+            --theme-text: #1a1a1a;
+            --theme-text-subtle: #4d4d4d;
+            --theme-heading: #000000;
+            --theme-accent: #000000;
+            --theme-link: #000000;
+            --theme-visited: #4d4d4d;
+            --theme-active: #000000;
+            --theme-orange: #000000;
+            --theme-selection-bg: #d4d4d4;
+            --theme-border: #d6d6d6;
+        }
     }
 
     html {
@@ -107,16 +108,6 @@
         font-family: var(--font-sans);
         font-weight: 400;
         @apply min-h-screen;
-    }
-
-    body.bg-photo {
-        background-image:
-            linear-gradient(rgb(0 0 0 / 0.85), rgb(0 0 0 / 0.85)),
-            url("/wallpaper-bridge.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
     }
 
     @media (max-width: 640px) {
@@ -281,7 +272,9 @@
     }
 
     /* The IBICT logo is dark navy and vanishes on the dark bg: lift its brightness there. */
-    .experience-logo[src$="ibict.png"] { filter: brightness(2.6); }
+    @media (prefers-color-scheme: dark) {
+        .experience-logo[src$="ibict.png"] { filter: brightness(2.6); }
+    }
 
     .inline-logo {
         display: inline-block;
