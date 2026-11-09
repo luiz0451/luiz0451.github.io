@@ -1,5 +1,6 @@
 export type VideoEmbed =
-    | { kind: "iframe"; src: string; provider: "youtube" | "vimeo" }
+    | { kind: "iframe"; src: string; provider: "youtube"; thumbnail: string }
+    | { kind: "iframe"; src: string; provider: "vimeo"; pageUrl: string }
     | { kind: "file"; src: string };
 
 const youtubeId = /^[\w-]{11}$/;
@@ -35,7 +36,7 @@ export function parseVideoUrl(input: string): VideoEmbed | null {
     if (host === "vimeo.com" || host === "player.vimeo.com") {
         const id = segments.find((segment) => vimeoId.test(segment));
         return id
-            ? { kind: "iframe", provider: "vimeo", src: `https://player.vimeo.com/video/${id}?dnt=1` }
+            ? { kind: "iframe", provider: "vimeo", src: `https://player.vimeo.com/video/${id}?dnt=1`, pageUrl: `https://vimeo.com/${id}` }
             : null;
     }
 
@@ -50,5 +51,25 @@ function youtubeEmbed(id: string | null | undefined, url: URL): VideoEmbed | nul
     if (!id || !youtubeId.test(id)) return null;
     const start = Number.parseInt(url.searchParams.get("t") ?? url.searchParams.get("start") ?? "", 10);
     const params = Number.isFinite(start) && start > 0 ? `?start=${start}` : "";
-    return { kind: "iframe", provider: "youtube", src: `https://www.youtube-nocookie.com/embed/${id}${params}` };
+    return {
+        kind: "iframe",
+        provider: "youtube",
+        src: `https://www.youtube-nocookie.com/embed/${id}${params}`,
+        thumbnail: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+    };
+}
+
+/** Still-image URL for a video preview; null when none is available (file videos, Vimeo lookup failure). */
+export async function videoThumbnail(video: VideoEmbed): Promise<string | null> {
+    if (video.kind === "file") return null;
+    if (video.provider === "youtube") return video.thumbnail;
+
+    try {
+        const response = await fetch(`https://vimeo.com/api/oembed.json?url=${encodeURIComponent(video.pageUrl)}&width=800`);
+        if (!response.ok) return null;
+        const { thumbnail_url } = (await response.json()) as { thumbnail_url?: string };
+        return thumbnail_url ?? null;
+    } catch {
+        return null;
+    }
 }

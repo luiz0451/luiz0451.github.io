@@ -331,6 +331,35 @@
         background: #000;
     }
 
+    .gallery-thumb {
+        position: relative;
+        display: block;
+    }
+
+    .gallery-thumb video {
+        pointer-events: none;
+    }
+
+    .gallery-play {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 9999px;
+        background: rgb(0 0 0 / 0.65);
+        color: #fff;
+        transition: background 120ms;
+    }
+
+    .gallery-thumb:hover .gallery-play,
+    .gallery-thumb:focus-visible .gallery-play {
+        background: rgb(0 0 0 / 0.85);
+    }
+
     .gallery-caption {
         flex: 1;
         border-top: 1px solid var(--theme-bg-subtle);

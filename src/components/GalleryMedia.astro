@@ -1,38 +1,53 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import type { VideoEmbed } from "../utils/video-embed";
+import { Play } from "@lucide/astro";
+import { videoThumbnail, type VideoEmbed } from "../utils/video-embed";
 
 interface Props {
     entry: CollectionEntry<"gallery">;
     video: VideoEmbed | null;
-    /** card: cropped 16:9 thumbnail linking to the page. page: full media. */
+    /** card: 16:9 preview linking to the page (no embedded player). page: full media. */
     variant: "card" | "page";
 }
 
 const { entry, video, variant } = Astro.props;
 const { title, image, alt } = entry.data;
 const full = variant === "page";
+const thumbnail = !full && video ? await videoThumbnail(video) : null;
 ---
 
-{video?.kind === "iframe" ? (
-    <iframe
-        class:list={["gallery-media", full && "gallery-media-full"]}
-        src={video.src}
-        title={title}
-        loading="lazy"
-        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-    ></iframe>
-) : video?.kind === "file" ? (
-    <video class:list={["gallery-media", full && "gallery-media-full"]} src={video.src} controls preload="metadata" playsinline></video>
-) : image ? (
-    full ? (
+{full ? (
+    video?.kind === "iframe" ? (
+        <iframe
+            class="gallery-media gallery-media-full"
+            src={video.src}
+            title={title}
+            loading="lazy"
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+        ></iframe>
+    ) : video?.kind === "file" ? (
+        <video class="gallery-media gallery-media-full" src={video.src} controls preload="metadata" playsinline></video>
+    ) : image ? (
         <Image src={image} alt={alt ?? ""} width={1400} class="gallery-image-full" loading="eager" />
-    ) : (
-        <a href={`/gallery/${entry.id}/`}>
+    ) : null
+) : (
+    <a href={`/gallery/${entry.id}/`} class="gallery-thumb" aria-label={title}>
+        {video ? (
+            <>
+                {thumbnail ? (
+                    <img src={thumbnail} alt="" class="gallery-media" loading="lazy" decoding="async" />
+                ) : video.kind === "file" ? (
+                    <video class="gallery-media" src={`${video.src}#t=0.1`} preload="metadata" muted playsinline tabindex="-1"></video>
+                ) : (
+                    <span class="gallery-media" aria-hidden="true"></span>
+                )}
+                <span class="gallery-play" aria-hidden="true"><Play class="size-5" /></span>
+            </>
+        ) : image ? (
             <Image src={image} alt={alt ?? ""} width={800} height={450} class="gallery-media" loading="lazy" />
-        </a>
-    )
-) : null}
+        ) : null}
+    </a>
+)}
