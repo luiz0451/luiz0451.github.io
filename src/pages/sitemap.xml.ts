@@ -1,6 +1,6 @@
 import { getCollection } from "astro:content";
 
-const site = "https://talkinghead.blog.br";
+const site = import.meta.env.SITE.replace(/\/$/, "");
 type SitemapUrl = {
     url: string;
     lastmod?: string;

@@ -3,7 +3,7 @@ export function GET() {
         `User-agent: *
 Allow: /
 
-Sitemap: https://talkinghead.blog.br/sitemap.xml
+Sitemap: ${new URL("/sitemap.xml", import.meta.env.SITE)}
 `,
         {
             headers: {

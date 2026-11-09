@@ -17,7 +17,7 @@ import { glossarySchema } from "./src/schemas/glossary.ts";
  */
 
 const codeFontStack = '"JetBrains Mono", monospace';
-const site = "https://talkinghead.blog.br";
+const site = "https://blog.luizlab.com.br";
 
 /**
  * @param {HastNode | null | undefined} node
