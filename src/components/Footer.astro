@@ -1,5 +1,5 @@
 ---
-import { CreativeCommons, Rss } from "@lucide/astro";
+import { CreativeCommons, Mail, Rss } from "@lucide/astro";
 const { class: className = "mx-auto flex w-full max-w-2xl px-6 py-6 text-left text-sm" } = Astro.props;
 ---
 
@@ -9,6 +9,8 @@ const { class: className = "mx-auto flex w-full max-w-2xl px-6 py-6 text-left te
             <a class="muted inline-flex items-center gap-1" rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><CreativeCommons aria-hidden="true" class="size-4" />CC BY-SA 4.0</a>
             <span class="muted" aria-hidden="true">·</span>
             <a class="muted inline-flex items-center gap-1" href="/rss.xml"><Rss aria-hidden="true" class="size-4" />RSS</a>
+            <span class="muted" aria-hidden="true">·</span>
+            <a class="muted inline-flex items-center gap-1" href="mailto:me@luizlab.com.br"><Mail aria-hidden="true" class="size-4" />me@luizlab.com.br</a>
         </div>
     </div>
 </footer>
