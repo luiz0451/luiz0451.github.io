@@ -1,32 +1,49 @@
+/* Intern ships no italic yet; the browser synthesizes oblique for <em>. */
 @font-face {
-    font-family: "Inter";
-    src: url("/fonts/inter-latin-normal.woff2") format("woff2");
+    font-family: "Intern";
+    src: url("/fonts/intern-variable.woff2") format("woff2");
     font-style: normal;
     font-weight: 100 900;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Inter";
-    src: url("/fonts/inter-latin-italic.woff2") format("woff2");
-    font-style: italic;
-    font-weight: 100 900;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "JetBrains Mono";
-    src: url("/fonts/jetbrains-mono-latin-normal.woff2") format("woff2");
+    font-family: "Ioskeley Mono";
+    src: url("/fonts/ioskeley-mono-regular.woff2") format("woff2");
     font-style: normal;
-    font-weight: 100 800;
+    font-weight: 400;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "JetBrains Mono";
-    src: url("/fonts/jetbrains-mono-latin-italic.woff2") format("woff2");
+    font-family: "Ioskeley Mono";
+    src: url("/fonts/ioskeley-mono-italic.woff2") format("woff2");
     font-style: italic;
-    font-weight: 100 800;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Ioskeley Mono";
+    src: url("/fonts/ioskeley-mono-medium.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Ioskeley Mono";
+    src: url("/fonts/ioskeley-mono-bold.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Ioskeley Mono";
+    src: url("/fonts/ioskeley-mono-bolditalic.woff2") format("woff2");
+    font-style: italic;
+    font-weight: 700;
     font-display: swap;
 }
 
@@ -59,8 +76,8 @@
         --theme-bg: #252525; /* 234 */
         --theme-bg-muted: #333233; /* 235 */
         --theme-border: #060606; /* 232 */
-        --font-mono: "JetBrains Mono", monospace;
-        --font-sans: "Inter", sans-serif;
+        --font-mono: "Ioskeley Mono", monospace;
+        --font-sans: "Intern", sans-serif;
         --nvim-divider-pattern: "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -";
     }
 
