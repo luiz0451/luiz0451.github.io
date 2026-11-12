@@ -1,48 +1,88 @@
-/* Intern ships no italic yet; the browser synthesizes oblique for <em>. */
 @font-face {
-    font-family: "Intern";
-    src: url("/fonts/intern-variable.woff2") format("woff2");
-    font-style: normal;
-    font-weight: 100 900;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Ioskeley Mono";
-    src: url("/fonts/ioskeley-mono-regular.woff2") format("woff2");
+    font-family: "Fira Sans";
+    src: url("/fonts/fira-sans-regular.woff2") format("woff2");
     font-style: normal;
     font-weight: 400;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Ioskeley Mono";
-    src: url("/fonts/ioskeley-mono-italic.woff2") format("woff2");
+    font-family: "Fira Sans";
+    src: url("/fonts/fira-sans-italic.woff2") format("woff2");
     font-style: italic;
     font-weight: 400;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Ioskeley Mono";
-    src: url("/fonts/ioskeley-mono-medium.woff2") format("woff2");
+    font-family: "Fira Sans";
+    src: url("/fonts/fira-sans-medium.woff2") format("woff2");
     font-style: normal;
     font-weight: 500;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Ioskeley Mono";
-    src: url("/fonts/ioskeley-mono-bold.woff2") format("woff2");
+    font-family: "Fira Sans";
+    src: url("/fonts/fira-sans-mediumitalic.woff2") format("woff2");
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    src: url("/fonts/fira-sans-semibold.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    src: url("/fonts/fira-sans-semibolditalic.woff2") format("woff2");
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    src: url("/fonts/fira-sans-bold.woff2") format("woff2");
     font-style: normal;
     font-weight: 700;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Ioskeley Mono";
-    src: url("/fonts/ioskeley-mono-bolditalic.woff2") format("woff2");
+    font-family: "Fira Sans";
+    src: url("/fonts/fira-sans-bolditalic.woff2") format("woff2");
     font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+}
+
+/* Fira Mono ships no italic; the browser synthesizes oblique for <em>. */
+@font-face {
+    font-family: "FiraMono Nerd Font Mono";
+    src: url("/fonts/fira-mono-nerd-regular.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "FiraMono Nerd Font Mono";
+    src: url("/fonts/fira-mono-nerd-medium.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "FiraMono Nerd Font Mono";
+    src: url("/fonts/fira-mono-nerd-bold.woff2") format("woff2");
+    font-style: normal;
     font-weight: 700;
     font-display: swap;
 }
@@ -75,8 +115,8 @@
         --theme-selection-bg: #3a3a3a;
         --theme-selection-fg: var(--theme-text);
         --theme-border: #2a2a2a;
-        --font-mono: "Ioskeley Mono", monospace;
-        --font-sans: "Intern", sans-serif;
+        --font-mono: "FiraMono Nerd Font Mono", monospace;
+        --font-sans: "Fira Sans", sans-serif;
         --nvim-divider-pattern: "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -";
     }
 
