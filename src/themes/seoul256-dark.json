@@ -1,0 +1,127 @@
+{
+  "name": "seoul256-dark",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#252525",
+    "editor.foreground": "#D9D9D9",
+    "editor.selectionBackground": "#007173"
+  },
+  "tokenColors": [
+    {
+      "scope": ["comment", "punctuation.definition.comment"],
+      "settings": { "foreground": "#719872" }
+    },
+    {
+      "scope": ["string", "string.quoted", "string.template"],
+      "settings": { "foreground": "#98BCBD" }
+    },
+    {
+      "scope": ["punctuation.definition.string"],
+      "settings": { "foreground": "#BE9873" }
+    },
+    {
+      "scope": ["constant", "constant.other", "variable.other.constant"],
+      "settings": { "foreground": "#6FBCBD" }
+    },
+    {
+      "scope": ["constant.numeric"],
+      "settings": { "foreground": "#FFDE99" }
+    },
+    {
+      "scope": ["constant.language"],
+      "settings": { "foreground": "#999ABD" }
+    },
+    {
+      "scope": ["constant.character", "constant.character.escape", "string.regexp"],
+      "settings": { "foreground": "#E09B99" }
+    },
+    {
+      "scope": ["punctuation", "meta.brace", "punctuation.separator", "punctuation.terminator"],
+      "settings": { "foreground": "#BE9873" }
+    },
+    {
+      "scope": ["keyword", "keyword.control", "storage.type", "keyword.operator.new", "keyword.operator.expression", "entity.name.tag"],
+      "settings": { "foreground": "#98BC99" }
+    },
+    {
+      "scope": ["keyword.control.conditional", "keyword.control.switch"],
+      "settings": { "foreground": "#98BEDE" }
+    },
+    {
+      "scope": ["keyword.control.loop"],
+      "settings": { "foreground": "#719CDF" }
+    },
+    {
+      "scope": ["keyword.other", "variable.language"],
+      "settings": { "foreground": "#E17899" }
+    },
+    {
+      "scope": ["keyword.control.trycatch", "keyword.control.exception"],
+      "settings": { "foreground": "#E12672" }
+    },
+    {
+      "scope": ["keyword.control.import", "keyword.control.export", "keyword.control.from", "meta.preprocessor", "keyword.control.directive"],
+      "settings": { "foreground": "#E19972" }
+    },
+    {
+      "scope": ["meta.shebang", "comment.line.shebang"],
+      "settings": { "foreground": "#BDBB72" }
+    },
+    {
+      "scope": ["entity.name.function", "support.function", "meta.function-call entity.name.function"],
+      "settings": { "foreground": "#DFDEBD" }
+    },
+    {
+      "scope": ["variable.other.readwrite.instance", "variable.other.property", "support.variable.property"],
+      "settings": { "foreground": "#FFBFBD" }
+    },
+    {
+      "scope": ["entity.name.type", "entity.name.class", "support.type", "support.class", "entity.other.attribute-name", "entity.other.inherited-class"],
+      "settings": { "foreground": "#DFBC72" }
+    },
+    {
+      "scope": ["storage.modifier", "entity.name.namespace", "entity.name.module"],
+      "settings": { "foreground": "#97DDDF" }
+    },
+    {
+      "scope": ["keyword.operator"],
+      "settings": { "foreground": "#DEDD99" }
+    },
+    {
+      "scope": ["punctuation.definition.template-expression", "punctuation.section.embedded", "meta.embedded", "constant.other.placeholder"],
+      "settings": { "foreground": "#FFBD98" }
+    },
+    {
+      "scope": ["markup.heading", "entity.name.section"],
+      "settings": { "foreground": "#E0BEBC", "fontStyle": "bold" }
+    },
+    {
+      "scope": ["markup.underline.link", "string.other.link"],
+      "settings": { "foreground": "#E0BEBC", "fontStyle": "underline" }
+    },
+    {
+      "scope": ["markup.inserted"],
+      "settings": { "foreground": "#98BC99" }
+    },
+    {
+      "scope": ["markup.deleted"],
+      "settings": { "foreground": "#E09B99" }
+    },
+    {
+      "scope": ["meta.diff.range", "meta.diff.header"],
+      "settings": { "foreground": "#6FBCBD" }
+    },
+    {
+      "scope": ["invalid", "invalid.illegal"],
+      "settings": { "foreground": "#E12672" }
+    },
+    {
+      "scope": ["markup.bold"],
+      "settings": { "fontStyle": "bold" }
+    },
+    {
+      "scope": ["markup.italic"],
+      "settings": { "fontStyle": "italic" }
+    }
+  ]
+}

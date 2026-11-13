@@ -99,22 +99,27 @@
 @import "tailwindcss";
 
 @layer base {
+    /*
+     * seoul256 (junegunn/seoul256.vim): dark at g:seoul256_background = 233 (darkest),
+     * light at 256 (lightest), picked by the OS scheme. Values are the plugin's default
+     * xterm-256 -> RGB map; each var notes the Vim highlight group it mirrors as [dark, light].
+     */
     :root {
         color-scheme: light dark;
-        --theme-bg: #000000;
-        --theme-bg-muted: #161616;
-        --theme-bg-subtle: #6a6a6a;
-        --theme-text: #e6e6e6;
-        --theme-text-subtle: #b3b3b3;
-        --theme-heading: #ffffff;
-        --theme-accent: #ffffff;
-        --theme-link: #ffffff;
-        --theme-visited: #b3b3b3;
-        --theme-active: #ffffff;
-        --theme-orange: #ffffff;
-        --theme-selection-bg: #3a3a3a;
+        --theme-bg: #171717;          /* Normal bg [233, 256] */
+        --theme-bg-muted: #252525;    /* IndentGuidesEven [bg+1, bg-1] */
+        --theme-bg-subtle: #727272;   /* NonText [59, 145] */
+        --theme-text: #d9d9d9;        /* Normal fg [252, 239] */
+        --theme-text-subtle: #bfbfbf; /* [249, 241] */
+        --theme-heading: #e0bebc;     /* Title [181, 88] */
+        --theme-accent: #98bc99;      /* Statement [108, 66] */
+        --theme-link: #e0bebc;        /* Underlined [181, 168] */
+        --theme-visited: #e09b99;     /* diffRemoved [174, 131] */
+        --theme-active: #ffbd98;      /* Special [216, 173] */
+        --theme-orange: #e19972;      /* ModeMsg [173, 173] */
+        --theme-selection-bg: #007173; /* Visual [23, 152] */
         --theme-selection-fg: var(--theme-text);
-        --theme-border: #2a2a2a;
+        --theme-border: #3f3f3f;      /* MatchParen [bg+3, bg-3] */
         --font-mono: "FiraMono Nerd Font Mono", monospace;
         --font-sans: "Fira Sans", sans-serif;
         --nvim-divider-pattern: "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -";
@@ -123,18 +128,18 @@
     @media (prefers-color-scheme: light) {
         :root {
             --theme-bg: #ffffff;
-            --theme-bg-muted: #f0f0f0;
-            --theme-bg-subtle: #999999;
-            --theme-text: #1a1a1a;
-            --theme-text-subtle: #4d4d4d;
-            --theme-heading: #000000;
-            --theme-accent: #000000;
-            --theme-link: #000000;
-            --theme-visited: #4d4d4d;
-            --theme-active: #000000;
-            --theme-orange: #000000;
-            --theme-selection-bg: #d4d4d4;
-            --theme-border: #d6d6d6;
+            --theme-bg-muted: #f1f1f1;
+            --theme-bg-subtle: #bdbdbd;
+            --theme-text: #616161;
+            --theme-text-subtle: #757575;
+            --theme-heading: #9b1300;
+            --theme-accent: #719899;
+            --theme-link: #e17899;
+            --theme-visited: #be7572;
+            --theme-active: #be7572;
+            --theme-orange: #e19972;
+            --theme-selection-bg: #bcdede;
+            --theme-border: #e1e1e1;
         }
     }
 

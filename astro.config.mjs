@@ -247,7 +247,7 @@ function rehypeExternalLinks() {
 
 export default defineConfig({
   integrations: [expressiveCode({
-    themes: ["monochrome-dark", "monochrome-light"].map((name) =>
+    themes: ["seoul256-dark", "seoul256-light"].map((name) =>
       ExpressiveCodeTheme.fromJSONString(readFileSync(new URL(`./src/themes/${name}.json`, import.meta.url), "utf8")),
     ),
     defaultProps: {
@@ -257,6 +257,7 @@ export default defineConfig({
     themeCssSelector: () => false,
     styleOverrides: {
       borderRadius: "0",
+      borderColor: "var(--theme-border)",
       codeFontFamily: codeFontStack,
       codeFontSize: "0.8125rem",
     },

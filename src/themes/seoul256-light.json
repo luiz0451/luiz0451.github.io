@@ -1,0 +1,127 @@
+{
+  "name": "seoul256-light",
+  "type": "light",
+  "colors": {
+    "editor.background": "#F1F1F1",
+    "editor.foreground": "#616161",
+    "editor.selectionBackground": "#BCDEDE"
+  },
+  "tokenColors": [
+    {
+      "scope": ["comment", "punctuation.definition.comment"],
+      "settings": { "foreground": "#719872" }
+    },
+    {
+      "scope": ["string", "string.quoted", "string.template"],
+      "settings": { "foreground": "#009799" }
+    },
+    {
+      "scope": ["punctuation.definition.string"],
+      "settings": { "foreground": "#9A7200" }
+    },
+    {
+      "scope": ["constant", "constant.other", "variable.other.constant"],
+      "settings": { "foreground": "#007173" }
+    },
+    {
+      "scope": ["constant.numeric"],
+      "settings": { "foreground": "#9A7372" }
+    },
+    {
+      "scope": ["constant.language"],
+      "settings": { "foreground": "#E17899" }
+    },
+    {
+      "scope": ["constant.character", "constant.character.escape", "string.regexp"],
+      "settings": { "foreground": "#E17899" }
+    },
+    {
+      "scope": ["punctuation", "meta.brace", "punctuation.separator", "punctuation.terminator"],
+      "settings": { "foreground": "#9A7200" }
+    },
+    {
+      "scope": ["keyword", "keyword.control", "storage.type", "keyword.operator.new", "keyword.operator.expression", "entity.name.tag"],
+      "settings": { "foreground": "#719899" }
+    },
+    {
+      "scope": ["keyword.control.conditional", "keyword.control.switch"],
+      "settings": { "foreground": "#0099BD" }
+    },
+    {
+      "scope": ["keyword.control.loop"],
+      "settings": { "foreground": "#7299BC" }
+    },
+    {
+      "scope": ["keyword.other", "variable.language"],
+      "settings": { "foreground": "#E17899" }
+    },
+    {
+      "scope": ["keyword.control.trycatch", "keyword.control.exception"],
+      "settings": { "foreground": "#E12672" }
+    },
+    {
+      "scope": ["keyword.control.import", "keyword.control.export", "keyword.control.from", "meta.preprocessor", "keyword.control.directive"],
+      "settings": { "foreground": "#BE7572" }
+    },
+    {
+      "scope": ["meta.shebang", "comment.line.shebang"],
+      "settings": { "foreground": "#727100" }
+    },
+    {
+      "scope": ["entity.name.function", "support.function", "meta.function-call entity.name.function"],
+      "settings": { "foreground": "#727100" }
+    },
+    {
+      "scope": ["variable.other.readwrite.instance", "variable.other.property", "support.variable.property"],
+      "settings": { "foreground": "#9A7599" }
+    },
+    {
+      "scope": ["entity.name.type", "entity.name.class", "support.type", "support.class", "entity.other.attribute-name", "entity.other.inherited-class"],
+      "settings": { "foreground": "#9A7200" }
+    },
+    {
+      "scope": ["storage.modifier", "entity.name.namespace", "entity.name.module"],
+      "settings": { "foreground": "#007173" }
+    },
+    {
+      "scope": ["keyword.operator"],
+      "settings": { "foreground": "#BE7572" }
+    },
+    {
+      "scope": ["punctuation.definition.template-expression", "punctuation.section.embedded", "meta.embedded", "constant.other.placeholder"],
+      "settings": { "foreground": "#E19972" }
+    },
+    {
+      "scope": ["markup.heading", "entity.name.section"],
+      "settings": { "foreground": "#9B1300", "fontStyle": "bold" }
+    },
+    {
+      "scope": ["markup.underline.link", "string.other.link"],
+      "settings": { "foreground": "#E17899", "fontStyle": "underline" }
+    },
+    {
+      "scope": ["markup.inserted"],
+      "settings": { "foreground": "#719872" }
+    },
+    {
+      "scope": ["markup.deleted"],
+      "settings": { "foreground": "#BE7572" }
+    },
+    {
+      "scope": ["meta.diff.range", "meta.diff.header"],
+      "settings": { "foreground": "#007173" }
+    },
+    {
+      "scope": ["invalid", "invalid.illegal"],
+      "settings": { "foreground": "#BF2172" }
+    },
+    {
+      "scope": ["markup.bold"],
+      "settings": { "fontStyle": "bold" }
+    },
+    {
+      "scope": ["markup.italic"],
+      "settings": { "fontStyle": "italic" }
+    }
+  ]
+}
